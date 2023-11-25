@@ -1,6 +1,14 @@
 from GPTResponseGenerator import GPTResponseGenerator
+import os
+from dotenv import load_dotenv
 
 def main():
+    # Load environment variables
+    load_dotenv()
+
+    # Retrieve the system message from .env
+    system_message = os.getenv("WHOAREYOU_SYSTEM_MESSAGE", "Default system message")
+
     # Create an instance of GPTResponseGenerator
     gpt_generator = GPTResponseGenerator()
 
@@ -9,13 +17,12 @@ def main():
         if user_input.lower() == 'exit':
             break
 
-        # System message can be static or dynamically generated based on the context
-        system_message = "This is a test system message."
-
         # Get the response from GPTResponseGenerator
-        response = gpt_generator.generate_response(system_message, user_input)
-        print("\nMessage Sent:", user_input)
-        print("Response Received:", response)
+        user_message = user_input
+        response = gpt_generator.generate_response(system_message, user_message)
+        print("\nTest Unit User Message:", user_message)
+        print("Test Unit System Message:", system_message)
+        print("Test Unit Response Received:", response)
         print("---------------------------------------------------")
 
 if __name__ == "__main__":

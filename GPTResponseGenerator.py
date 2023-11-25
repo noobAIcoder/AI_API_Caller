@@ -14,6 +14,8 @@ class GPTResponseGenerator:
         self.client = openai.OpenAI(api_key=self.api_key)
 
     def generate_response(self, system_message, user_message):
+        print("\nResponse Generator User Message:", user_message)
+        print("Response Generator System Message:", system_message)
         messages = [
             {"role": "system", "content": system_message},
             {"role": "user", "content": user_message}

@@ -1,52 +1,68 @@
-AI API Caller
-Overview
+# AI API Caller
 
-The AI API Caller repository is a collection of Python scripts designed to simplify interacting with various AI APIs. The current focus is on OpenAI's GPT models, providing an easy and efficient way for users to send queries and receive responses from the GPT-3.5 API.
-Contents
+## Overview
+The AI API Caller is a suite of Python scripts designed to interface with OpenAI's GPT-3.5 model. This project simplifies sending queries to the API and managing the responses, allowing for easy integration into various applications. It includes scripts for direct API interaction and for processing data from Excel files.
 
-This repository includes:
+## Files in the Repository
+- `GPTResponseGenerator.py`: The core class for interacting with the OpenAI GPT API.
+- `test_gptresponsegenerator.py`: A tst script to test the GPTResponseGenerator by sending user-input messages.
+- `test_xlsx2db_gptresponsegenerator.py`: A script that reads questions from an Excel file, queries the OpenAI API, and stores responses in both a new Excel file and a SQLite database.
+- `.env.example`: An example of the environment file for setting up necessary configurations.
 
-    GPTResponseGenerator.py: A script that encapsulates the functionality for sending requests to and receiving responses from the OpenAI GPT-3.5 API.
-    test_gptresponsegenerator.py: A demonstration script showing how to use GPTResponseGenerator.py to send messages to the API and display responses.
-    README.md: Documentation explaining the purpose and usage of the scripts within the repository.
+## Prerequisites
+- Python 3.x
+- OpenAI API Key
+- Python packages: `openai`, `openpyxl`, `python-dotenv`, `sqlite3` (usually included in standard Python installations)
 
-Prerequisites
+## Setup
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/AI_API_Caller.git
+   ```
+2. **Install Required Python Packages:**
+   ```bash
+   pip install openai openpyxl python-dotenv
+   ```
+3. **Set Up the .env File:**
+   - Rename `.env.example` to `.env`.
+   - Fill in the necessary details like your OpenAI API key.
 
-    Python 3.x
-    OpenAI API Key
+## Usage
 
-Setup and Installation
+### GPTResponseGenerator
+This script is used to interact with the OpenAI GPT API.
 
-    Clone the Repository:
+#### Example Usage:
+```python
+from GPTResponseGenerator import GPTResponseGenerator
 
-    bash
+gpt_generator = GPTResponseGenerator()
+response = gpt_generator.generate_response("System message here", "User message here")
+print(response)
+```
 
-git clone https://github.com/noobAIcoder/AI_API_Caller.git
+### Test GPTResponseGenerator
+Use this script to manually send messages to the API and see the responses.
 
-Install Dependencies:
+#### Running the Test Script:
+```bash
+python test_gptresponsegenerator.py
+```
 
-    Run pip install openai python-dotenv to install the necessary Python packages.
+### Test XLSX to DB GPTResponseGenerator
+This script reads data from an Excel file, sends it to the OpenAI API, and stores the responses in a new Excel file and a SQLite database.
 
-API Key Configuration:
+#### Preparing Your Excel File:
+- Ensure your Excel file has questions in the first three columns.
+- Name the file as per the path specified in your `.env` file.
 
-    Create a .env file in the root directory.
-    Add your OpenAI API key:
+#### Running the Script:
+```bash
+python test_xlsx2db_gptresponsegenerator.py
+```
 
-    arduino
+## Contributions
+Contributions, suggestions, and feedback are welcome. Please adhere to the project's code style and guidelines when making contributions.
 
-        OPENAI_API_KEY='your_api_key_here'
-
-Usage
-
-    To utilize the GPTResponseGenerator, import it into your Python project and instantiate it.
-    Use the test_gptresponsegenerator.py script to see a demonstration of sending a user message to the OpenAI GPT API and receiving a response.
-
-Customization
-
-You can modify the scripts to suit your specific needs, such as changing API parameters or handling different AI models.
-Contributions
-
-Contributions, suggestions, and feedback are welcome. Please ensure to follow the project's code style and guidelines.
-License
-
-This project is licensed under the MIT License.
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
